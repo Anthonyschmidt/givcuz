@@ -1,0 +1,83 @@
+ <!--Breadcrumb Section Start Here-->
+  <div class="breadcrumb-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Daily Deals</h1>
+          <ul class="breadcrumb">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li class="active">
+              Daily Deals
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Breadcrumb Section End Here-->
+  <div class="container mission-page" id="page-info">
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- Shoping Section Start Here-->
+        <section class="our-works shoping">
+          <header class="shoping-list section-header clearfix">
+            <h2>Shop our products &amp; <strong>Help us.</strong></h2>
+          </header>
+          <div class="row">
+            <div class="col-md-9">
+              <div class="row shoping-row">
+                <% if ((!@daily_deals_by_category) || (@daily_deals_by_category.count == 0)) %>
+                    <h1>No deals for today.</h1>
+                <% else %>
+                    <% @daily_deals_by_category.each do |ddbc| %>
+
+                        <% category = ddbc.first %>
+                        <% daily_deals = ddbc.last %>
+
+                     <% daily_deals.take(4).each do |dd| %>
+                        <div class="col-sm-4">
+                           <div class="thumbnail">
+                            <a href="/products/detail/<%= dd.id %>" class="img-thumb">
+                              <% if dd.product.images.last.nil? %>
+                                <%= image_tag('default_product.png') %>
+                              <% else %>
+                                <%= image_tag(dd.product.images.last.url) %>
+                              <% end %>
+                            </a>
+                            <div class="caption">
+                              <h3><a href="/products/detail/<%= dd.id %>"><%= dd.product.name %></a></h3>
+                              <span class="price"><del>$<%= '%.2f' % (dd.product.price) %></del> $<%= '%.2f' % (dd.product.price - (dd.product.price * dd.discount)) %><span class="tags-list">NPO gets :  <%= (dd.per_npo * 100).to_i %>%</span></span>
+                              <a href="/products/detail/<%= dd.id %>" class="btn btn-default">View Details</a>
+                            </div>
+                           </div>
+                        </div>
+                    <% end %>
+                 <% end %>
+                <% end %>
+              </div>
+              
+            </div>
+            <div class="col-md-3">
+              <aside class="media aside-bar">
+                <div class="shoping-filter clearfix">
+                  <h3 class="space-top">Product Categories</h3>
+                  <nav class="side-nav">
+                    <ul>
+                      <% Category.where(:status => true).each do |c| %>
+                      <li>
+                        <a href="/products/deals/<%= c.id %>"><i class="fa fa-angle-double-right bullet-arrow"></i><%= c.name %></a>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </nav>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+        <!-- Shoping Section End Here-->
+      </div>
+    </div>
+  </div>

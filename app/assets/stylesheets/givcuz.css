@@ -1,0 +1,25 @@
+.detail {
+	padding-top: 20px;
+}
+
+.detail-carousel {
+	padding-bottom: 80px;
+}
+
+.circle-pad {
+	width: 140px; 
+	height: 140px;
+}
+
+.button-download {
+	padding-top: 30px;	
+}
+
+.btn-success a {
+  text-decoration: none;
+  color: white;
+}
+
+.example-givcuz {
+  margin-top: 10px;
+}

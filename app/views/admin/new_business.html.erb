@@ -1,0 +1,61 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h2 class="sub-header">Add Business</h2>
+    <div class="row">
+       <form class="form-horizontal" id="business_form" enctype="multipart/form-data" method="post" action="<%= @url %>">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputName" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress" class="col-lg-2 control-label">Address</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="address" id="inputAddress" placeholder="Address">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="Phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputWeb" class="col-lg-2 control-label">Web</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="web" id="inputWeb" placeholder="Web">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPhoto" class="col-lg-2 control-label">Photo</label>
+              <div class="col-lg-8">
+                <input accept="image/jpeg, image/png" type="file" class="form-control" name="photo" id="inputPhoto" placeholder="Photo">
+              </div>
+            </div>
+            <input type="hidden" name="method" id="method" value="new">
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" id="add_business">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-lg-8">
+          <div class="alert alert-dismissable alert-success" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success!</strong> The business was saved correctly. Click <strong><a href="/admin/businesses">here</a></strong> to see it.
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Error!</strong> Change a few things up and try submitting again.
+          </div>
+        </div>
+    </div>
+  </div>

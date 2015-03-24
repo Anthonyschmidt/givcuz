@@ -1,0 +1,25 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">Categories</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |c| %>
+        <tr>
+          <td><%= c.id %></td>
+          <td><%= c.name %></td>
+          <td><a href="/admin/edit_category/<%= c.id %>" class="cursor-hand fa fa-pencil-square-o text-color-black"></a></td>
+          <td><a href="#" class="cursor-hand fa fa-times text-color-black delete type-category" id="delete-item-<%= c.id %>"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

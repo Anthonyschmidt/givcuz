@@ -1,0 +1,75 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h2 class="sub-header">Add Product</h2>
+    <div class="row">
+       <form class="form-horizontal" id="product_form" enctype="multipart/form-data" method="post" action="<%= @url %>">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputName" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textDescription" class="col-lg-2 control-label">Description</label>
+             <div class="col-lg-8">
+                <textarea class="form-control" rows="4" name="description" id="textDescription"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPrice" class="col-lg-2 control-label">Price</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="price" id="inputPrice" placeholder="Price">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputCode" class="col-lg-2 control-label">Code</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="code" id="inputCode" placeholder="Code">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">Categories</label>
+              <div class="col-lg-8">
+              <select class="form-control" name="category" id="categories">
+                <% @categories.each do |c| %>
+                  <option value="<%= c.id %>"><%= c.name %></option>
+                <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="businesses" class="col-lg-2 control-label">Business</label>
+              <div class="col-lg-8">
+              <select class="form-control" name="business" id="businesses">
+                <% @businesses.each do |b| %>
+                  <option value="<%= b.id %>"><%= b.name %></option>
+                <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPhoto" class="col-lg-2 control-label">Photo</label>
+              <div class="col-lg-8">
+                <input accept="image/jpeg, image/png" type="file" class="form-control" name="photo" id="inputPhoto" placeholder="Photo">
+              </div>
+            </div>
+            <input type="hidden" name="method" id="method" value="new">
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" id="add_product">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-lg-8">
+          <div class="alert alert-dismissable alert-success" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success!</strong> The product was saved correctly. Click <strong><a href="/admin/products">here</a></strong> to see it.
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Error!</strong> Change a few things up and try submitting again.
+          </div>
+        </div>
+    </div>
+  </div>

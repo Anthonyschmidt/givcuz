@@ -1,0 +1,98 @@
+<!-- Breadcrumb Section Start Here -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Our Shop</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="active">
+                         Product Details
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End Here -->
+<div class="container mission-page" id="page-info">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- Shoping Section Start Here-->
+            <section class="our-works shoping shoping-detail-block">
+                <header class="page-header section-header clearfix">
+                    <h2>Shop our products &amp; <strong>Help us.</strong></h2>
+                </header>
+                <div class="row">
+                    <div class="col-md-9 product-detail">
+                        <!-- product-detail Section -->
+                        <div class="row product-detail-inner">
+                            <div class="col-sm-5">
+                                <a class="fancybox-effects-a" href="assets/img/shopping-img1.png">
+                                    <% if @product.images.last.nil? %>
+                                      <%= image_tag('default_product.png', :class => 'img-resposive') %>
+                                    <% else %>
+                                      <%= image_tag(@product.images.last.url, :class => 'img-responsive') %>
+                                    <% end %>
+                                </a>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="product-detail-head">
+                                    <h2><%= @product.name %></h2>
+                                    <span class="price"><del>$<%= @base_price %></del> $<%= @final_price %></span>
+                                    <span class="tags">NPO gets :  <%= @npo %>%</span>
+                                </div>
+                                <p><%= @product.description %></p>
+                                <input type="hidden" id="deal-id" value="<%= @deal.id %>"/>
+                                 <a class="btn btn-default" id="buy-deal" role="button">Buy</a>
+                               
+                            </div>
+                        </div>
+                        <!-- product-detail tab Section -->
+                        <div class="row tab-wrap">
+                            <div class="col-sm-12">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs nav-tabs_less-space" role="tablist">
+                                  <li class="active"><a href="#first_title-I" role="tab" data-toggle="tab">Description</a></li>
+                                  <li><a href="#second_title-II" role="tab" data-toggle="tab">Reviews (1)</a></li>
+                                </ul>
+                            
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                      <div class="tab-pane active" id="first_title-I">
+                                        <h3>Product Description</h3>
+                                        <p><%= @product.description %></p>
+                                      </div>
+                                      <div class="tab-pane" id="second_title-II">
+                                        <h3>Product Reviews</h3>
+                                        <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec risus neque, eget sagittis est. Nulla eget libero ligula, ac scelerisque sapien. Donec sit amet sapien purus, sit amet tristique nisi. </P>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <aside class="media">                                           
+                            <div class="shoping-filter clearfix">
+                                <h3 class="space-top">Product Categories</h3>
+                                <nav class="side-nav">
+                                    <ul>
+                                        <% Category.where(:status => true).each do |c| %>
+                                          <li>
+                                            <a href="/products/deals/<%= c.id %>"><i class="fa fa-angle-double-right bullet-arrow"></i><%= c.name %></a>
+                                          </li>
+                                        <% end %>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+            <!-- Shoping Section End Here-->
+        </div>
+    </div>
+</div>

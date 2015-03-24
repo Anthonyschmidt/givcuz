@@ -1,0 +1,41 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">Deals</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Discount</th>
+        <th>Per Business</th>
+        <th>Per NPO</th>
+        <th>Per GivCuz</th>
+        <th>Active</th>
+        <th>Featured</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @deals.each do |d| %>
+        <tr>
+          <td><%= d.id %></td>
+          <td><%= d.product.name %></td>
+          <td><%= (d.from.nil?) ? '' : d.from.strftime("%Y-%m-%d") %></td>
+          <td><%= (d.to.nil?) ? '' : d.to.strftime("%Y-%m-%d") %></td>
+          <td><%= (d.discount.nil?) ? '' : ((d.discount.to_f)*100).to_i %>%</td>
+          <td><%= (d.per_business.nil?) ? '' : ((d.per_business.to_f)*100).to_i %>%</td>
+          <td><%= (d.per_npo.nil?) ? '' : ((d.per_npo.to_f)*100).to_i %>%</td>
+          <td><%= (d.per_givcuz.nil?) ? '' : ((d.per_givcuz.to_f)*100).to_i %>%</td>
+          <td><%= d.active %></td>
+          <td><%= (d.featured == 1) ? 'Yes' : '' %></td>
+          <td><a href="/admin/edit_deal/<%= d.id %>" class="cursor-hand fa fa-pencil-square-o text-color-black"></a></td>
+          <td><a href="#" class="cursor-hand fa fa-times text-color-black delete type-deal" id="delete-item-<%= d.id %>"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

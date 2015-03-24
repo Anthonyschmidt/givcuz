@@ -1,0 +1,151 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h2 class="sub-header">Add Deal</h2>
+    <div class="row">
+       <form class="form-horizontal" id="deal_form">
+          <fieldset>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">Date</label>
+              <div class="col-lg-4">
+                <input type="text" id="inputFrom" class="form-control col-lg-6" placeholder="From">
+              </div>
+              <div class="col-lg-4">
+                <input type="text" id="inputTo" class="form-control col-lg-6" placeholder="To">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">Product</label>
+              <div class="col-lg-4">
+                <select class="form-control" id="businesses">
+                    <option value="-1">< Select Business ></option>
+                  <% @businesses.each do |b| %>
+                    <option value="<%= b.id %>"><%= b.name %></option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-lg-4">
+                <select class="form-control" id="products">
+                  <option value="-1">< Select Product ></option>
+                </select>
+                <!-- <select class="form-control" id="products">
+                  <% @products.each do |p| %>
+                    <option value="<%= p.id %>"><%= p.name %></option>
+                  <% end %>
+                </select> -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">NPO</label>
+              <div class="col-lg-8">
+              <select class="form-control" id="npos">
+                <% @npos.each do |n| %>
+                  <option value="<%= n.id %>"><%= n.name %></option>
+                <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputDiscount" class="col-lg-2 control-label" style="margin-top: 30px;">Percentages</label>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">Discount</label>
+                <input type="number" min="0" max="100" class="form-control" id="inputDiscount" value="0" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">Business</label>
+                <input type="number" min="0" max="100" id="inputPercentageBusiness" class="form-control col-lg-6" value="0" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">NPO</label>
+                <input type="number" min="0" max="100" id="inputPercentageNPO" class="form-control col-lg-6" value="0" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">GivCuz</label>
+                <input type="number" min="0" max="100" id="inputPercentageGivCuz" class="form-control col-lg-6" value="0" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="inputDailyDeal"> Is daily deal?
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" id="inputFeaturedDeal"> Is featured deal?
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputMaxCouponsOffered" class="col-lg-2 control-label">Maximum Coupons Offered</label>
+              <div class="col-lg-8">
+                <input type="number" min="0" class="form-control" id="inputMaxCouponsOffered" placeholder="Maximum Coupons Offered">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputMaxCouponsPerUser" class="col-lg-2 control-label">Maximum Coupons Per User</label>
+              <div class="col-lg-8">
+                <input type="number" min="0" class="form-control" id="inputMaxCouponsPerUser" placeholder="Maximum Coupons Per User">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPercentageGivCuz" class="col-lg-2 control-label">Coupon Expire Days</label>
+              <div class="col-lg-8">
+                <input type="number" min="0" class="form-control" id="inputCouponExpire" placeholder="Coupon Expire Days">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputExternalCuponCode" class="col-lg-2 control-label">External Cupon Code</label>
+              <div class="col-lg-8">
+                <input type="text" min="0" class="form-control" id="inputExternalCuponCode" placeholder="External Cupon Code">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputLinkExternalCode" class="col-lg-2 control-label">External Link</label>
+              <div class="col-lg-8">
+                <input type="url" min="0" class="form-control" id="inputLinkExternalCode" placeholder="External Link" >
+              </div>
+            </div>
+            <input type="hidden" name="method" id="method" value="new">
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" id="add_deal">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-lg-8">
+          <div class="alert alert-dismissable alert-success" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success!</strong> The deal was saved correctly. Click <strong><a href="/admin/deals">here</a></strong> to see it.
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display: none;">
+            <!--button type="button" class="close" data-dismiss="alert">×</button-->
+            <strong>Error!</strong> Change a few things up and try submitting again.
+          </div>
+        </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/humanity/jquery-ui.css">
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+  var products = <%= raw @products.to_json %>;
+  $(function() {
+    $("#inputFrom").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#inputTo").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#businesses").on("change", function(){
+      $("#products").empty();
+      $("#products").append('<option value="-1">< Select Product ></option>');
+      var business_id = parseInt($("#businesses").val());
+      if(business_id != -1){
+        for(var i=0; i<products.length; i++){
+          var cp = products[i];
+          if(cp.business_id == business_id){
+            $("#products").append('<option value="' + cp.id + '">' + cp.name + '</option>');
+          }
+        }
+      }
+    });
+  });
+</script>

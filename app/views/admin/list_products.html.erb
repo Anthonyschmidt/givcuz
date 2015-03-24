@@ -1,0 +1,31 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">Products</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Code</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |b| %>
+        <tr>
+          <td><%= b.id %></td>
+          <td><%= b.name %></td>
+          <td><%= b.description %></td>
+          <td><%= b.price %></td>
+          <td><%= b.code %></td>
+          <td><a href="/admin/edit_product/<%= b.id %>" class="cursor-hand fa fa-pencil-square-o text-color-black"></a></td>
+          <td><a href="#" class="cursor-hand fa fa-times text-color-black delete type-product" id="delete-item-<%= b.id %>"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

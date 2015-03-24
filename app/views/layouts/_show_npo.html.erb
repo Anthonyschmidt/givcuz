@@ -1,0 +1,55 @@
+To get users associated with your organization, send them this link so thay can register for free: <br>
+<h3><a href="<%= request.protocol + request.host %>/donor/new_donor/<%= @npo_code %>"><%= request.protocol + request.host %>/donor/new_donor/<%= @npo_code %></a></h3>
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h2 class="sub-header">Update NPO</h2>
+    <div class="row">
+      <div class="col-lg-9">
+       <form id="npo_form" class="form-horizontal" enctype="multipart/form-data" method="post" action="<%= @url %>">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputName" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-8">
+                <%= @npo.name %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress" class="col-lg-2 control-label">Address</label>
+              <div class="col-lg-8">
+                <%= @npo.address %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
+              <div class="col-lg-8">
+                <%= @npo.phone %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-8">
+                <%= @npo.email %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputWeb" class="col-lg-2 control-label">Web</label>
+              <div class="col-lg-8">
+                <%= @npo.web %>
+              </div>
+            </div>
+            <div class="form-group">
+              <% if !@npo.images.last.nil? %>
+                <%= image_tag(@npo.images.last.url, :class => 'img-responsive') %>
+              <% end %>
+            </div>
+          </fieldset>
+        </form>
+
+      </div>
+      <div class="col-lg-3">
+        <% if !@npo.images.last.nil? %>
+          <%= image_tag(@npo.images.last.url, :class => 'img-responsive') %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>

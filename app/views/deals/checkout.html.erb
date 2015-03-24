@@ -1,0 +1,107 @@
+<!-- Breadcrumb Section Start Here -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Our Shop</h1>
+                <ul class="breadcrumb">
+                    <li><a href="#">Select Option</a>
+                    </li>
+                    <li><a href="#">Log In</a>
+                    </li>
+                    <li class="active">Payment</li>
+                    <li><a href="#">Confirm Purchase</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End Here -->
+<!-- price information variables -->
+<% price_discount = (@product.price * @deal.discount)  %>
+<% total = @product.price - price_discount %>
+<% to_business = '%.2f' % (total * @deal.per_business) %>
+<% to_npo = '%.2f' % (total * @deal.per_npo) %>
+<% to_givcuz = '%.2f' % (total * @deal.per_givcuz) %>
+
+<div class="container" id="page-info">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- AddtoCart Section Start Here-->
+            <section class="anim-section AddtoCart">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>Shopping Cart Informations</h3>                                     
+                        <table class="table" id="main-table">
+                          <thead>
+                            <tr>
+                              <th>#Item</th>
+                              <th>Product</th>
+                              <th>Base Price</th>
+                              <th>Final Price</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="product-image"><a href="shop-listing.html">
+                                <% if @product.images.last.nil? %>
+                                    <%= image_tag('default_product.png', :class => 'img-responsive') %>
+                                <% else %>
+                                    <%= image_tag(@product.images.last.url, :class => 'img-responsive') %>
+                                <% end %>
+                                </a></td>
+                              <td class="product-title"><a href="shop-listing.html"><strong><%= @product.name %></strong></a><br>
+                                <%= @product.description %>
+                              </td>
+                              <td>$<%= @product.price %></td>
+                              <td>$<%= total %></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                       <table class="table footer-table" id="summary-table">
+                           <tr>
+                                <td class="one">
+                                    <% if @deal.link_external_code %>
+                                    <p>Use this coupon code <strong><%= @deal.external_cupon_code %></strong> when buying products here <%= @deal.link_external_code %> </p>
+                                    <button type="button" class="btn btn-default">
+                                    <a target="_blank" href="<%= @deal.link_external_code %>">Click here to buy</a>
+                                    </button>
+                                    <% else %>
+                                    <div>
+                                        <form accept-charset="UTF-8" action="/deals/confirm" method="post">
+                                            <input type="hidden" id="amount" name="amount" value="<%= @amount %>">
+                                            <input type="hidden" id="deal-id" name="deal_id" value="<%= @deal.id %>"/>
+                                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                                data-description="Payment Checkout"
+                                                data-amount="<%= @amount %>"></script>
+                                        </form>
+                                    </div>
+                                    <% end %>
+                                </td>
+                                <td class="two">
+                                    <table>
+                                        <tr>
+                                            <td>Cart Subtotal</td>
+                                            <td>$<%= total %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping and Handling</td>
+                                            <td class="free-shipping">Free Shipping</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Order Total</td>
+                                            <td class="total">$<%= total %></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                           </tr>    
+                        </table>                            
+                    </div>
+                </div>
+            </section>
+            <!-- AddtoCart Section End Here-->                          
+        </div>
+    </div>
+</div>

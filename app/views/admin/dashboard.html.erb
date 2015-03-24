@@ -1,0 +1,18 @@
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <p>
+            <% if user_signed_in? %>
+              <% if current_user.user_type == User::USER_ADMIN %>
+              <% elsif current_user.user_type == User::USER_DONOR %>
+              <% elsif current_user.user_type == User::USER_BUSINESS_MANAGER %>
+                <h1 class="page-header">Business Information</h1>
+                <%= render 'layouts/show_business' %>
+              <% elsif current_user.user_type == User::USER_NPO_MANAGER %>
+                <h1 class="page-header">NPO Information</h1>
+                <%= render 'layouts/show_npo' %>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>

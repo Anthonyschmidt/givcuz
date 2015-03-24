@@ -1,0 +1,91 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h2 class="sub-header">Update Product</h2>
+    <div class="row">
+      <div class="col-lg-9">
+       <form class="form-horizontal" id="product_form" enctype="multipart/form-data" method="post" action="<%= @url %>">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputName" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="name" id="inputName" placeholder="Name" value="<%= @product.name %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="textDescription" class="col-lg-2 control-label">Description</label>
+             <div class="col-lg-8">
+                <textarea class="form-control" name="description" rows="4" id="textDescription"><%= @product.description %></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPrice" class="col-lg-2 control-label">Price</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="price" id="inputPrice" placeholder="Price" value="<%= @product.price %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputCode" class="col-lg-2 control-label">Code</label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="code" id="inputCode" placeholder="Code" value="<%= @product.code %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">Categories</label>
+              <div class="col-lg-8">
+              <select class="form-control" name="category" name="categories" id="categories">
+                <% @categories.each do |c| %>
+                  <% if c.id == @product.category.id %>
+                    <option selected="true" value="<%= c.id %>"><%= c.name %></option>
+                  <% else %>
+                    <option value="<%= c.id %>"><%= c.name %></option>
+                  <% end %>
+                <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="businesses" class="col-lg-2 control-label">Business</label>
+              <div class="col-lg-8">
+              <select class="form-control" name="business" id="businesses">
+                <% @businesses.each do |b| %>
+                  <% if b.id == @product.business.id %>
+                    <option selected="true" value="<%= b.id %>"><%= b.name %></option>
+                  <% else %>
+                    <option value="<%= b.id %>"><%= b.name %></option>
+                  <% end %>
+                <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPhoto" class="col-lg-2 control-label">Photo</label>
+              <div class="col-lg-8">
+                <input accept="image/jpeg, image/png" type="file" class="form-control" name="photo" id="inputPhoto" placeholder="Photo">
+              </div>
+            </div>
+            <input type="hidden" name="method" id="method" value="edit">
+            <input type="hidden" id="product_id" value="<%= @product.id %>">
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" id="add_product">Update</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-lg-8">
+          <div class="alert alert-dismissable alert-success" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success!</strong> The product was saved correctly. Click <strong><a href="/admin/products">here</a></strong> to see it.
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Error!</strong> Change a few things up and try submitting again.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <% if !@product.images.last.nil? %>
+          <%= image_tag(@product.images.last.url, :class => 'img-responsive') %>
+        <% end %>
+      </div>
+    </div>
+  </div>

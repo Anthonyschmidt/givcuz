@@ -1,0 +1,33 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">NPOs</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Web</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @npos.each do |n| %>
+        <tr>
+          <td><%= n.id %></td>
+          <td><%= n.name %></td>
+          <td><%= n.address %></td>
+          <td><%= n.phone %></td>
+          <td><%= n.email %></td>
+          <td><%= n.web %></td>
+          <td><a href="/admin/edit_npo/<%= n.id %>" class="cursor-hand fa fa-pencil-square-o text-color-black"></a></td>
+          <td><a href="#" class="cursor-hand fa fa-times text-color-black delete type-npo" id="delete-item-<%= n.id %>"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

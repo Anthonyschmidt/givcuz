@@ -1,0 +1,60 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="row">
+      <div class="col-lg-9">
+       <form class="form-horizontal" id="business_form" enctype="multipart/form-data" method="post" action="<%= @url %>">
+          <fieldset>
+            <div class="form-group">
+              <label for="inputName" class="col-lg-2 control-label">Name</label>
+              <div class="col-lg-8">
+                <%= @business.name %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress" class="col-lg-2 control-label">Address</label>
+              <div class="col-lg-8">
+                <%= @business.address %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPhone" class="col-lg-2 control-label">Phone</label>
+              <div class="col-lg-8">
+                <%= @business.phone %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+              <div class="col-lg-8">
+                <%= @business.email %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputWeb" class="col-lg-2 control-label">Web</label>
+              <div class="col-lg-8">
+                <%= @business.web %>
+              </div>
+            </div>
+            <div class="form-group">
+              <% if !@business.images.last.nil? %>
+                <%= image_tag(@business.images.last.url, :class => 'img-responsive') %>
+              <% end %>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-lg-8">
+          <div class="alert alert-dismissable alert-success" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success!</strong> The business was saved correctly. Click <strong><a href="/admin/businesses">here</a></strong> to see it.
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Error!</strong> Change a few things up and try submitting again.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <% if !@business.images.last.nil? %>
+          <%= image_tag(@business.images.last.url, :class => 'img-responsive') %>
+        <% end %>
+      </div>
+    </div>
+  </div>

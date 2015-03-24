@@ -1,0 +1,101 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">Add User</h2>
+  <div class="container">
+     <form class="form-horizontal" id="user_form">
+        <fieldset>
+          <div class="form-group">
+            <label for="types" class="col-lg-2 control-label">Type</label>
+            <div class="col-lg-8">
+            <select class="form-control" name="type" id="types">
+                <option value="<%= User::USER_ADMIN %>">Admin</option>
+                <option value="<%= User::USER_DONOR %>">Donor</option>
+                <option value="<%= User::USER_BUSINESS_MANAGER %>">Business Manager</option>
+                <option value="<%= User::USER_NPO_MANAGER %>">NPO manager</option>
+              </select>
+            </div>
+          </div>
+          <div id="business_container" class="form-group hidden">
+            <label for="businesses" class="col-lg-2 control-label">Business</label>
+            <div class="col-lg-8">
+            <select class="form-control" name="business" id="businesses">
+              <% @businesses.each do |b| %>
+                <option value="<%= b.id %>"><%= b.name %></option>
+              <% end %>
+              </select>
+            </div>
+          </div>
+          <div id="npos_container" class="form-group hidden">
+            <label for="npos" class="col-lg-2 control-label">NPO</label>
+            <div class="col-lg-8">
+            <select class="form-control" name="npos" id="npos">
+              <% @npos.each do |n| %>
+                <option value="<%= n.id %>"><%= n.name %></option>
+              <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Password confirmation</label>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" id="inputPasswordConfirmation" placeholder="Confirmation">
+            </div>
+          </div>
+          <input type="hidden" name="method" id="method" value="new">
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary" id="add_user">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div class="col-lg-8">
+        <div class="alert alert-dismissable alert-success" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Success!</strong> The user was saved correctly. Click <strong><a href="/admin/users">here</a></strong> to see it.
+        </div>
+        <div class="alert alert-dismissable alert-danger" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error!</strong> Change a few things up and try submitting again.
+        </div>
+        <div id="alert-danger-pass" class="alert alert-dismissable alert-danger" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error!</strong> Passwords doesn't match.
+        </div>
+      </div>
+  </div>
+</div>
+
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+  var products = <%= raw @products.to_json %>;
+  $(function(){
+    $("#types").on("change", function(){
+      var type = $("#types").val();
+      if (type == 'ADMIN'){
+        $("#business_container").addClass('hidden');
+        $("#npos_container").addClass('hidden');
+      }else if (type == 'DONOR'){
+        $("#business_container").addClass('hidden');
+        $("#npos_container").removeClass('hidden');
+      }else if (type == 'BUSINESS_MANAGER'){
+        $("#business_container").removeClass('hidden');
+        $("#npos_container").addClass('hidden');
+      }else if (type == 'NPO_MANAGER'){
+        $("#business_container").addClass('hidden');
+        $("#npos_container").removeClass('hidden');
+      }
+    });
+  });
+</script>

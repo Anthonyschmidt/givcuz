@@ -1,0 +1,62 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">Update User</h2>
+  <div class="container">
+     <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label for="businesses" class="col-lg-2 control-label">Type</label>
+            <div class="col-lg-8">
+            <select class="form-control" name="business" id="businesses">
+                <option value="<%= User::USER_ADMIN %>" 
+                  <% if @user.user_type == User::USER_ADMIN %> selected="selected" <% end %>>Admin</option>
+                <option value="<%= User::USER_DONOR %>"<% if @user.user_type == User::USER_DONOR %> selected="selected"<% end %>>Donor</option>
+                <option value="<%= User::USER_BUSINESS_MANAGER %>"<% if @user.user_type == User::USER_BUSINESS_MANAGER %> selected="selected" <% end %>>Business Manager</option>
+                <option value="<%= User::USER_NPO_MANAGER %>"<% if @user.user_type == User::USER_NPO_MANAGER %> selected="selected" <% end %>>NPO manager</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-8">
+              <input type="text" class="form-control" id="inputEmail" placeholder="Name" value="<%= @user.email %>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="currentPassword" class="col-lg-2 control-label">Current Password</label>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" id="currentPassword" placeholder="Current Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-lg-2 control-label">New Password</label>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" id="inputPassword" placeholder="New Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputName" class="col-lg-2 control-label">Password confirmation</label>
+            <div class="col-lg-8">
+              <input type="password" class="form-control" id="inputPasswordConfirmation" placeholder="Confirmation">
+            </div>
+          </div>
+          <input type="hidden" name="method" id="method" value="edit">
+          <input type="hidden" id="user_id" value="<%= @user.id %>">
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-primary" id="edit_user">Update</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <div class="col-lg-8">
+        <div class="alert alert-dismissable alert-success" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Success!</strong> The user was saved correctly. Click <strong><a href="/admin/users">here</a></strong> to see it.
+        </div>
+        <div class="alert alert-dismissable alert-danger" style="display: none;">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error!</strong> Change a few things up and try submitting again.
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,161 @@
+ <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <h2 class="sub-header">Update Deal</h2>
+    <div class="row">
+       <form class="form-horizontal" id="deal_form">
+          <fieldset>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">Date</label>
+              <div class="col-lg-4">
+                <input type="text" id="inputFrom" class="form-control col-lg-6" placeholder="From" value="<%= (@deal.from.nil?) ? '' : @deal.from.strftime("%Y-%m-%d") %>">
+              </div>
+              <div class="col-lg-4">
+                <input type="text" id="inputTo" class="form-control col-lg-6" placeholder="To" value="<%= (@deal.to.nil?) ? '' : @deal.to.strftime("%Y-%m-%d") %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">Product</label>
+              <div class="col-lg-4">
+                <select class="form-control" id="businesses">
+                    <option value="-1">< Select Business ></option>
+                    <% @businesses.each do |b| %>
+                      <% if b.id == @deal.product.business_id %>
+                        <option selected="true" value="<%= b.id %>"><%= b.name %></option>
+                      <% else %>
+                        <option value="<%= b.id %>"><%= b.name %></option>
+                      <% end %>
+                    <% end %>
+                </select>
+              </div>
+              <div class="col-lg-4">
+                <select class="form-control" id="products">
+                  <option value="-1">< Select Product ></option>
+                  <% @deal.product.business.products.each do |p| %>
+                    <% if p.id == @deal.product.id %>
+                      <option selected="true" value="<%= p.id %>"><%= p.name %></option>
+                    <% else %>
+                      <option value="<%= p.id %>"><%= p.name %></option>
+                    <% end %>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="categories" class="col-lg-2 control-label">NPO</label>
+              <div class="col-lg-8">
+              <select class="form-control" id="npos">
+                <% @npos.each do |n| %>
+                  <% if n.id == @deal.npo_id %>
+                    <option selected="true" value="<%= n.id %>"><%= n.name %></option>
+                  <% else %>
+                    <option value="<%= n.id %>"><%= n.name %></option>
+                  <% end %>
+                <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputDiscount" class="col-lg-2 control-label" style="margin-top: 30px;">Percentages</label>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">Discount</label>
+                <input type="number" min="0" max="100" class="form-control" id="inputDiscount" value="<%= ((@deal.discount).to_f*100).to_i %>" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">Business</label>
+                <input type="number" min="0" max="100" id="inputPercentageBusiness" class="form-control col-lg-6" value="<%= ((@deal.per_business).to_f*100).to_i %>" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">NPO</label>
+                <input type="number" min="0" max="100" id="inputPercentageNPO" class="form-control col-lg-6" value="<%= ((@deal.per_npo).to_f*100).to_i %>" required>
+              </div>
+              <div class="col-lg-2">
+                <label for="inputDiscount" class="control-label">GivCuz</label>
+                <input type="number" min="0" max="100" id="inputPercentageGivCuz" class="form-control col-lg-6" value="<%= ((@deal.per_givcuz).to_f*100).to_i %>" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <div class="checkbox">
+                  <label>
+                  <input  <%= (@deal.is_daily_deal == 1) ? 'checked="true"' : '' %>  type="checkbox" id="inputDailyDeal"> Is daily deal?
+                  </label>
+                </div>
+                <div class="checkbox">
+                  <label>
+                  <input <%= (@deal.featured == 1) ? 'checked="true"' : '' %> type="checkbox" id="inputFeaturedDeal"> Is featured deal?
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputMaxCouponsOffered" class="col-lg-2 control-label">Maximum Coupons Offered</label>
+              <div class="col-lg-8">
+                <input type="number" min="0" class="form-control" id="inputMaxCouponsOffered" placeholder="Maximum Coupons Offered" value="<%= @deal.max_coupons_offered %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputMaxCouponsPerUser" class="col-lg-2 control-label">Maximum Coupons Per User</label>
+              <div class="col-lg-8">
+                <input type="number" min="0" class="form-control" id="inputMaxCouponsPerUser" placeholder="Maximum Coupons Per User" value="<%= @deal.max_coupons_per_user %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPercentageGivCuz" class="col-lg-2 control-label">Coupon Expire Days</label>
+              <div class="col-lg-8">
+                <input type="number" min="0" class="form-control" id="inputCouponExpire" placeholder="Coupon Expire Days" value="<%= @deal.coupon_expires_after_days %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputExternalCuponCode" class="col-lg-2 control-label">External Cupon Code</label>
+              <div class="col-lg-8">
+                <input type="text" min="0" class="form-control" id="inputExternalCuponCode" placeholder="External Cupon Code" value="<%= @deal.external_cupon_code %>">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputLinkExternalCode" class="col-lg-2 control-label">External Link</label>
+              <div class="col-lg-8">
+                <input type="url" min="0" class="form-control" id="inputLinkExternalCode" placeholder="External Link" value="<%= @deal.link_external_code %>">
+              </div>
+            </div>
+            <input type="hidden" name="method" id="method" value="edit">
+            <input type="hidden" id="deal_id" value="<%= @deal.id %>">
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary" id="add_deal">Update</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+        <div class="col-lg-8">
+          <div class="alert alert-dismissable alert-success" style="display: none;">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success!</strong> The deal was saved correctly. Click <strong><a href="/admin/deals">here</a></strong> to see it.
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display: none;">
+            <!--button type="button" class="close" data-dismiss="alert">×</button-->
+            <strong>Error!</strong> Change a few things up and try submitting again.
+          </div>
+        </div>
+    </div>
+  </div>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/humanity/jquery-ui.css">
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+  var products = <%= raw @products.to_json %>;
+  $(function() {
+    $("#inputFrom").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#inputTo").datepicker({dateFormat: 'yy-mm-dd'});
+    $("#businesses").on("change", function(){
+      $("#products").empty();
+      $("#products").append('<option value="-1">< Select Product ></option>');
+      var business_id = parseInt($("#businesses").val());
+      if(business_id != -1){
+        for(var i=0; i<products.length; i++){
+          var cp = products[i];
+          if(cp.business_id == business_id){
+            $("#products").append('<option value="' + cp.id + '">' + cp.name + '</option>');
+          }
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,24 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<h2 class="sub-header">Users</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Email</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= u.id %></td>
+          <td><%= u.email %></td>
+          <td><%= u.user_type %></td>
+          <td><a href="/admin/edit_user/<%= u.id %>" class="cursor-hand fa fa-pencil-square-o text-color-black"></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

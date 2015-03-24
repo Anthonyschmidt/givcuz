@@ -1,0 +1,83 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<style>
+  .contact-form .form-group.error .form-control, .contact-form .form-group.error label, .contact-form .error .form-control {
+  border-color: #ff0000;
+  }
+  #success{
+    display:none;
+    position: absolute;
+    top: -48px;
+    left: 0;
+  }
+</style>
+<div id="wrapper">
+  <%= render 'layouts/header' %>
+  <!--Breadcrumb Section Start Here-->
+    <div class="breadcrumb-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Log In</h1>
+            <ul class="breadcrumb">
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li class="active">
+                Log In
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--Breadcrumb Section End Here-->
+
+  <div id="main">
+    <div class="content-wrapper container" id="page-info">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 contact-form">
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:role => "form"}) do |f| %>
+
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group col-xs-12 col-sm-6">
+                  <label for="inputEmail"><%= f.label :email %></label>
+                  <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
+                </div>
+              </div>
+          
+              <div class="col-xs-12">
+                <div class="form-group col-xs-12 col-sm-6">
+                  <label for="inputPassword"><%= f.label :password %></label>
+                  <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+                  <% if devise_mapping.rememberable? -%>
+                    <div class="checkbox">
+                      <label>
+                        <%= f.check_box :remember_me, :class => 'checkbox' %> <%= f.label :remember_me %>
+                      </label>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="col-xs-12 form-group btns-wrapper">
+                <div class="form-group col-xs-12 col-sm-6">
+                  <%= f.submit "Log in", :class => "btn btn-default" %>
+                </div>
+                <%= render "devise/shared/links" %>
+              </div>
+
+            </div>
+          <% end %>
+
+        </div>
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1 contact-address">
+          <h4>I'm new here</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing e Nulla justo mauris, iaculis at varius eu, hendrerit vel purusestibulum orci enim, laoreet at sapien se</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+     

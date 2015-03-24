@@ -1,0 +1,53 @@
+ <!--Breadcrumb Section Start Here-->
+  <div class="breadcrumb-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Deals by Category</h1>
+          <ul class="breadcrumb">
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li class="active">
+              Deals by Category
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Breadcrumb Section End Here-->
+
+<% current_category = @categories.where(:id => @current_category_id.to_i).first %>
+<h1><%= @current_category.name %></h1>
+
+<% if ((!@daily_deals_by_category) || (@daily_deals_by_category.count == 0))  %>
+    <h3>No deals for this category.</h3>
+<% else %>
+
+    <!-- deals container -->
+    <div class="row">
+        <% @daily_deals_by_category.each do |dd| %>
+            <div class="col-sm-12 col-md-3">
+                <div class="thumbnail">
+                    <% if dd.product.images.last.nil? %>
+                        <%= image_tag('default_product.png') %>
+                    <% else %>
+                        <%= image_tag(dd.product.images.last.url) %>
+                    <% end %>
+                    <div class="caption">
+                        <h3>Daily Deal</h3>
+                        <p><%= dd.product.description %></p>
+                        <p>
+                          <span class="label label-success">It's U$S <%= '%.2f' % (dd.product.price) %></span>
+                          <span class="label label-info">Get it for U$S <%= '%.2f' % (dd.product.price - (dd.product.price * dd.discount)) %></span>
+                          <span class="label label-warning">NPO <%= (dd.per_npo * 100).to_i %>%</span>
+                        </p>
+                        <p><a href="/products/detail/<%= dd.id %>" class="btn btn-default" role="button">View Detail</a></p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+<% end %>

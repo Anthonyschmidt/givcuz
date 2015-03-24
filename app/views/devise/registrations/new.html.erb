@@ -1,0 +1,65 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<style>
+  .contact-form .form-group.error .form-control, .contact-form .form-group.error label, .contact-form .error .form-control {
+  border-color: #ff0000;
+  }
+  #success{
+    display:none;
+    position: absolute;
+    top: -48px;
+    left: 0;
+  }
+</style>
+<div id="wrapper">
+  <%= render 'layouts/header' %>
+  <!--Breadcrumb Section Start Here-->
+    <div class="breadcrumb-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h1>Forgot your password?</h1>
+            <ul class="breadcrumb">
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li class="active">
+                Reset Password
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--Breadcrumb Section End Here-->
+
+
+    <h2>Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @validatable %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+</div>

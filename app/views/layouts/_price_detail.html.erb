@@ -1,0 +1,32 @@
+<% unless @product.nil? || @deal.nil? %>
+<div class="panel panel-warning panel-with-padding">
+
+	<h2>Details</h2>
+	<% unless @product.price.nil? || @deal.discount.nil? || @deal.per_business.nil? || @deal.per_npo.nil? || @deal.per_givcuz.nil? %>
+
+		<!-- price information variables -->
+		<% price_discount = (@product.price * @deal.discount)  %>
+		<% total = @product.price - price_discount %>
+		<% to_business = '%.2f' % (total * @deal.per_business) %>
+		<% to_npo = '%.2f' % (total * @deal.per_npo) %>
+		<% to_givcuz = '%.2f' % (total * @deal.per_givcuz) %>
+
+		<!-- format price values -->
+		<% total = '%.2f' % (@product.price - price_discount) %>
+		<% price_discount = '%.2f' % (@product.price * @deal.discount)  %>
+		<% product_price = '%.2f' % (@product.price)  %>
+
+		<p>
+			Product price: U$S <%= product_price %>  </br>
+			Discount: U$S <%= price_discount %> (<%= (@deal.discount * 100).to_i %>%)  </br></br>
+			Percentage business: <%= (@deal.per_business * 100).to_i %>% </br>
+			Percentage NPO: <%= (@deal.per_npo * 100).to_i %>% </br>
+			Percentage GivCuz: <%= (@deal.per_givcuz * 100).to_i %>% </br>
+			<hr>
+			<h3>Total: U$S <%= total %></h3>
+		</p>
+	<% else %>
+		<h3>Total: U$S 0</h3>
+	<% end %>
+</div>
+<% end %>

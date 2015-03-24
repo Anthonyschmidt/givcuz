@@ -1,0 +1,57 @@
+    <!-- Breadcrumb Section Start Here -->
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Our Shop</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#">Select Option</a>
+                        </li>
+                        <li><a href="#">Log In</a>
+                        </li>
+                        <li>Payment</li>
+                        <li><a href="#">Confirm Purchase</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section End Here -->
+    <% price_discount = (@product.price * @deal.discount)  %>
+    <% total = @product.price - price_discount %>
+    <% to_business = '%.2f' % (total * @deal.per_business) %>
+    <% to_npo = '%.2f' % (total * @deal.per_npo) %>
+    <% to_givcuz = '%.2f' % (total * @deal.per_givcuz) %>
+    <div class="container" id="page-info">
+        <div class="row">
+            <div class="col-xs-12">
+                <section class="checkout anim-section">
+                    <div class="row">
+                         <div class="tab-pane" id="confirmation">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <i class="fa fa-check-circle-o completed"></i>
+                                    <strong class="payment-success">Payment Successfully Completed</strong>
+                                    <p>Thank you for Purchasing product from Us. <%= @deal.per_npo %>% of the price will go to <strong><%= @deal.npo.name %></strong>.</p>
+                                    <span>You have Purchased <span class="purchased-item">“<%= @product.name %>”</span></span>
+                                    <div class="total-price">
+                                        <span>Total:</span> <span class="price-value">$<%= total %></span>
+                                    </div>
+                                
+                                    <a href="/deals/pdf_download/<%= @coupon.id %>" class="btn btn-default track-btn">DOWNLOAD COUPON</a>
+                                    
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12" style="margin-top: 10px;">
+                                    <%= render :partial => "shared/facebook_share" %>
+                                    <%= render :partial => "shared/twitter_share" %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
